@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Layout from "../layout/index.vue";
-import Login from '../components/login'
+
+
 
 Vue.use(VueRouter)
 
@@ -10,11 +11,15 @@ export const constRoutes = [
   {
     path: '/',
     component:Layout,
-    redirect:'/login',
+    redirect:'/home',
     children:[
       {
+       path:'/home',
+       component: ()=>import('../components/Home')
+      },
+      {
         path:'/login',
-        component: Login
+        component: ()=>import('../components/login')
       },
       {
         path:'/register',
@@ -23,6 +28,20 @@ export const constRoutes = [
       {
         path:'/market',
         component:()=>import('../components/market')
+      }
+    ]
+  },
+  {
+    path:'/more',
+    component:Layout,
+    children:[
+      {
+        path:'coin',
+        component:()=>import('../components/Traid/coin')
+      },
+      {
+        path:'fabi',
+        component:()=>import('../components/Traid/fabi')
       }
     ]
   }

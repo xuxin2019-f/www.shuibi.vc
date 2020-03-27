@@ -17,8 +17,8 @@
                     <img src="../assets/icon.png" alt="">
                 </el-menu-item>
                 <el-menu-item index="/market">行情</el-menu-item>
-                <el-menu-item index="2">法币交易</el-menu-item>
-                <el-menu-item index="3">币币交易</el-menu-item>
+                <el-menu-item index="/more/fabi">法币交易</el-menu-item>
+                <el-menu-item index="/more/coin">币币交易</el-menu-item>
             
                 <!-- 如果状态是未登录，则显示登录注册连接 -->
              <el-menu-item index="/login"  v-if='this.$store.state.isLogin===false'>登录/注册</el-menu-item>
