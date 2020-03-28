@@ -9,7 +9,9 @@
     style="width: 100%"
     fit
     highlight-current-row
-    @row-click='showdetail'>
+    @row-click='showdetail'
+    :height='winheight'
+    >
     <el-table-column
       prop="type"
       label="币种"
@@ -95,6 +97,7 @@
 export default {
   data(){
     return{
+      winheight:window.innerHeight-110,
       activeName:'first',
       tableData:[{
         type:'ETH',
@@ -249,17 +252,13 @@ export default {
   .el-row{
     width: 100%;
   }
-  .left-card{
-    height: 90%;
-    overflow-y:auto;
-    overflow-x:hidden;
-  }
   .right-card{
     display: flex;
     flex-direction: column;
   }
   .el-table{
     height: 100%;
+    
   }
   .clearfix:before,
   .clearfix:after {
