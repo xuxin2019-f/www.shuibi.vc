@@ -44,6 +44,10 @@ export const constRoutes = [
         component:()=>import('../components/Traid/fabi')
       }
     ]
+  },
+  {
+   path:'*',
+   redirect:'/'
   }
 ]
 

@@ -60,7 +60,7 @@ export default {
       };
     },
     created(){
-     console.log(this.isLogin)
+     
     },
   methods: {
       handleSelect(key, keyPath) {
