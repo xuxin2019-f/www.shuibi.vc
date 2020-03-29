@@ -7,7 +7,7 @@
        </div>
       </el-card>
 
-       <!--主题内容  -->
+       <!--主体内容  -->
       <div>
           <el-card class="box-card2">
         <div slot="header" class="clearfix">
@@ -20,7 +20,6 @@
            style="width: 100%"
            fit
            highlight-current-row
-           @row-click='showdetail'
           >
            <el-table-column
             prop="type"

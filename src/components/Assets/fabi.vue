@@ -7,11 +7,21 @@
        </div>
       </el-card>
 
-       <!--主题内容  -->
+       <!--主体内容  -->
       <div>
           <el-card class="box-card2">
         <div slot="header" class="clearfix">
-          <span>总资产折合：0.00000000 BTC ≈ 0.00 CNY</span>
+              <span>总资产折合：0.00000000 BTC ≈ 0.00 CNY</span>
+              <!-- 不加这层的话el-input和el-input prefix不一起动 -->
+              <div class='input'>
+                <el-autocomplete
+                 v-model="state"
+                 :fetch-suggestions="querySearchAsync"
+                 placeholder="请输入想要搜索的币种"
+                 prefix-icon="el-icon-search"
+                 @select="handleSelect"
+                ></el-autocomplete>
+              </div>
         </div>
         <div class="text item">
           <!-- 列表显示 -->
@@ -20,10 +30,9 @@
            style="width: 100%"
            fit
            highlight-current-row
-           @row-click='showdetail'
           >
            <el-table-column
-            prop="type"
+            prop="value"
             label="币种"
             width="250"
             sortable>
@@ -60,40 +69,69 @@
 export default {
   data(){
       return {
+          // 搜索框信息
+          // restaurants: [],
+          state: '',
+          timeout:  null,
+          // 数据列表
           tableData:[
               {
-                  type:'ETH',
+                  value:'ETH',
                   have:'1,000,000',
                   calculate:'0.00000000 ≈ 0.00 CNY'
               },
               {
-                  type:'ETH',
+                  value:'ETH',
                   have:'1,000,000',
                   calculate:'0.00000000 ≈ 0.00 CNY'
               },
               {
-                  type:'BTC',
+                  value:'BTC',
                   have:'1,000,000',
                   calculate:'0.00000000 ≈ 0.00 CNY'
               },
               {
-                  type:'BTC',
+                  value:'BTC',
                   have:'1,000,000',
                   calculate:'0.00000000 ≈ 0.00 CNY'
               },
               {
-                  type:'BTC',
+                  value:'BTC',
                   have:'1,000,000',
                   calculate:'0.00000000 ≈ 0.00 CNY'
               }
           ]
+      }
+  },
+  methods:{
+    // 默认应该是传入搜索框的输入内容
+    querySearchAsync(queryString, cb) {
+        var data = this.tableData;
+        var results = queryString ? data.filter(this.createStateFilter(queryString)) : data;
+
+        clearTimeout(this.timeout);
+        this.timeout = setTimeout(() => {
+          cb(results);
+        }, 300);
+      },
+    createStateFilter(queryString) {
+        return (state) => {
+          // state.value指定是遍历value属性,indexOf!==保证模糊搜索
+          return (state.value.toLowerCase().indexOf(queryString.toLowerCase()) !== -1);
+        };
+      },
+    handleSelect(item) {
+        this.tableData = []
+        this.tableData.push(item)
       }
   }
 }
 </script>
 
 <style scoped>
-
+  /* .input {
+    width:30%
+  } */
   .item {
     margin-bottom: 18px;
   }
@@ -101,6 +139,10 @@ export default {
       position: absolute;
       left: 30px;
       font-size: 18px;
+      float: left;
+  }
+  .input {
+    float: right;
   }
   .clearfix{
       height: 30px;
