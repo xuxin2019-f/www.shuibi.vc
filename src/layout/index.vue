@@ -32,8 +32,8 @@
 
              <el-submenu index="5" v-if='this.$store.state.isLogin'>
               <template slot="title">资产</template>
-              <el-menu-item index="5-1">法币资产</el-menu-item>
-              <el-menu-item index="5-2">币币资产</el-menu-item>
+              <el-menu-item index="/more/assets/fabi">法币资产</el-menu-item>
+              <el-menu-item index="/more/assets/coin">币币资产</el-menu-item>
              </el-submenu>
              <el-submenu index="6" v-if='this.$store.state.isLogin'>
               <template slot="title">
@@ -107,7 +107,7 @@ export default {
     padding: 0;
     color:#333;
     text-align: center;
-    display: flex;
+    position: relative;
   }
 
   

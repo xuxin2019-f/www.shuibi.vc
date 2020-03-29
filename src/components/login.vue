@@ -75,7 +75,7 @@ export default {
      /* align-self: center; */
      margin: 100px auto;
      width:30%;
-     height: 50%;
+     height: 400px;
      background-color:white;
    }
    .el-form{

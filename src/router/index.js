@@ -42,6 +42,14 @@ export const constRoutes = [
       {
         path:'fabi',
         component:()=>import('../components/Traid/fabi')
+      },
+      {
+        path:'assets/coin',
+        component:()=>import('../components/Assets/coin')
+      },
+      {
+        path:'assets/fabi',
+        component:()=>import('../components/Assets/fabi')
       }
     ]
   },
