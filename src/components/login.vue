@@ -10,7 +10,7 @@
                 <el-input type="password" v-model="loginForm.password" placeholder="密码" autocomplete="off"></el-input>
             </el-form-item>
             <el-form-item>
-                <el-button type="primary" style="width: 100%;" @click="doSubmit()">登录</el-button>
+                <el-button type="primary" style="width: 100%;" @click="Login()">登录</el-button>
             </el-form-item>
             <el-row style="text-align: center; margin-top: -10px;;">
                 <el-link type="primary" @click="doRegister()">用户注册</el-link>
@@ -23,7 +23,7 @@
 export default {
    data(){
      return {
-        //数据绑定
+      //数据绑定
       loginForm: {
         username: '',
         password: ''
@@ -52,14 +52,23 @@ export default {
      }
    },
    methods:{
-     doSubmit(){
+     Login(){
        this.$refs.LoginFormRef.validate(async valid => {
          if(!valid){
            return
          }
         //  校验成功 这里写业务逻辑：请求数据
-        this.$store.commit('change')
-        this.$router.push('/market')
+        // this.$store.commit('change')
+        // this.$router.push('/market')
+        // 这里应该写axios请求，比如
+        // const token = this.$http.post('/login').then(
+        //      res.getHeader('token')
+        // ) 这里先写死
+        this.$store.commit('login','123')
+        if(this.$store.state.token){
+          sessionStorage.setItem('token',this.$store.state.token)
+          this.$router.push('/home')
+        }
        } )
      },
      doRegister(){

@@ -9,14 +9,13 @@ import "./permission";
 import axios from 'axios'
 
 // 创建axios实例
-const service = axios.create({
-  baseURL:'回头再写',
-  withCredentials:true,//跨域时若要发送cookies需设置该选项
-  timeout:5000 //超时
-})
+axios.defaults.baseURL = '...'
+//跨域时若要发送cookies需设置该选项
+axios.defaults.withCredentials = true
+axios.defaults.timeout = 5000//超时
 
 // 请求拦截器
-service.interceptors.request.use(
+axios.interceptors.request.use(
   config=>{
     // 为请求头对象，添加token验证的Authorization字段
     // 或者用vuex中的token，这个到时候再定
@@ -30,7 +29,7 @@ service.interceptors.request.use(
 )
 
 // 响应拦截器
-service.interceptors.response.use(
+axios.interceptors.response.use(
   // 这里可以通过自定义code判断响应状态，也可以通过HTTP状态码判断
   response =>{
     const res = response.data

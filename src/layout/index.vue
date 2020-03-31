@@ -21,21 +21,21 @@
                 <el-menu-item index="/more/coin">币币交易</el-menu-item>
             
                 <!-- 如果状态是未登录，则显示登录注册连接 -->
-             <el-menu-item index="/login"  v-if='this.$store.state.isLogin===false'>登录/注册</el-menu-item>
+             <el-menu-item index="/login"  v-if="!isLogin">登录/注册</el-menu-item>
             
                 <!-- 如果状态是登录的才显示订单资产 -->
-                <el-submenu index="4" class='right' v-if='this.$store.state.isLogin'>
+                <el-submenu index="4" class='right' v-if='isLogin'>
               <template slot="title">订单</template>
               <el-menu-item index="4-1">法币订单</el-menu-item>
               <el-menu-item index="4-2">币币订单</el-menu-item>
              </el-submenu>
 
-             <el-submenu index="5" v-if='this.$store.state.isLogin'>
+             <el-submenu index="5" v-if='isLogin'>
               <template slot="title">资产</template>
               <el-menu-item index="/more/assets/fabi">法币资产</el-menu-item>
               <el-menu-item index="/more/assets/coin">币币资产</el-menu-item>
              </el-submenu>
-             <el-submenu index="6" v-if='this.$store.state.isLogin'>
+             <el-submenu index="6" v-if='isLogin'>
               <template slot="title">
                   <i class="el-icon-user"></i>
               </template>
@@ -59,17 +59,16 @@ export default {
         activeIndex: '1'
       };
     },
-    created(){
-     
-    },
   methods: {
       handleSelect(key, keyPath) {
         console.log(key, keyPath);
-      },
-      // test(){
-      //   console.log(this.isLogin)
-      // }
-    }
+      }
+    },
+  computed:{
+     isLogin(){
+       return this.$store.state.token
+     }
+  }
 }
 </script>
 

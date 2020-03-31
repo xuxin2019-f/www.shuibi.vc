@@ -1,16 +1,19 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import user from "./user";
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    isLogin:false
+    token:sessionStorage.getItem('token')||null
   },
   mutations: {
-    change(state){
-      state.isLogin = true
-    }
+   login(state,token){
+     state.token = token
+   }
+  },
+  getters:{
   },
   actions: {
   },
