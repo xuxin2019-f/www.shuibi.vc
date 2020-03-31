@@ -7,7 +7,7 @@ const whiteList = ['/home','/login','/register','/market']
 
 router.beforeEach(async (to,from,next)=>{
     // 以后这里会根据是否有令牌来判断是否登录，现在先根据store里的状态判断
-    const isLogin = store.state.isLogin
+    const isLogin = store.state.token
 
     if(isLogin){
         next()

@@ -56,9 +56,14 @@
 export default {
   data() {
       return {
+        // isLogin:false,
         activeIndex: '1'
-      };
+      }
     },
+    // created(){
+    //  this.isLogin = this.$store.state.token?true:false
+    //  console.log(this.isLogin)
+    // },
   methods: {
       handleSelect(key, keyPath) {
         console.log(key, keyPath);
