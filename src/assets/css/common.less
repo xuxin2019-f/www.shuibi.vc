@@ -1,0 +1,23 @@
+html {
+    font-size: 50px;
+}
+// 划分份数为15份
+@no:15;
+
+@media screen and (min-width:540px) {
+    html {
+        font-size: 540px/@no;
+    }
+}
+
+@media screen and (min-width:720px) {
+    html {
+        font-size: 720px/@no;
+    }
+}
+
+@media screen and (min-width:980px) {
+    html {
+        font-size: 980px/@no;
+    }
+}

@@ -7,6 +7,7 @@ import "./assets/css/global.css"
 // 路由守卫
 import "./permission";
 import axios from 'axios'
+// import './assets/css/common.css'
 
 // 创建axios实例
 axios.defaults.baseURL = '...'
