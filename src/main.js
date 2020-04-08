@@ -7,10 +7,19 @@ import "./assets/css/global.css"
 // 路由守卫
 import "./permission";
 import axios from 'axios'
+
+// mockjs接口
+import Mock from 'mockjs'
+import mockData from './mock'
+
+// echarts
+import echarts from 'echarts'
+Vue.prototype.$echarts = echarts
+
 // import './assets/css/common.css'
 
 // 创建axios实例
-axios.defaults.baseURL = '...'
+axios.defaults.baseURL = 'http://mockjs.com/api'
 //跨域时若要发送cookies需设置该选项
 axios.defaults.withCredentials = true
 axios.defaults.timeout = 5000//超时
@@ -40,6 +49,7 @@ axios.interceptors.response.use(
 )
 
 Vue.config.productionTip = false
+Vue.prototype.$http = axios
 
 new Vue({
   router,
