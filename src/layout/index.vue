@@ -71,6 +71,12 @@ export default {
         console.log(key, keyPath);
       }
     },
+  async mounted(){
+    //  let {btcusdt} = await this.$http.get('/k')
+    //  console.log(btcusdt)
+     let ret = await this.$http.get('/market')
+     console.log(ret)
+  },
   computed:{
      isLogin(){
        return this.$store.state.token

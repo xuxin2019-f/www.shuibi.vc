@@ -148,7 +148,7 @@ export default {
       })
 
     myChart.setOption(this.option)
-    // console.log(ret)
+    console.log(btcusdt)
   },
   methods:{
    calculateMA(dayCount, data) {
