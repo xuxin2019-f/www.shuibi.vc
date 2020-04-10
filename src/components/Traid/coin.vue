@@ -1,7 +1,46 @@
 <template>
   <div>
+    <el-row>
+      <el-col :span="6">
+        <!-- 二维列表 -->
+        <!-- 横向选择 -->
+        <el-tabs v-model="activeName" type="border-card" @tab-click="handleClick">
+          <el-tab-pane
+            v-for="item in lineData"
+            :key="item.id"
+            :label="item.value"
+            :name="item.value"
+          >
+            <!-- 搜索框 -->
+            <el-autocomplete
+              v-model="state"
+              :fetch-suggestions="querySearchAsync"
+              placeholder="请输入想要搜索的币种"
+              prefix-icon="el-icon-search"
+              @select="handleSelect"
+            ></el-autocomplete>
+
+            <!-- 表格列表 -->
+            <el-table
+              :data="tableData"
+              style="width: 100%"
+              fit
+              highlight-current-row
+              @row-click="showdetail"
+            >
+              <el-table-column prop="value" label="币种" width="200" sortable></el-table-column>
+            </el-table>
+          </el-tab-pane>
+        </el-tabs>
+      </el-col>
+      <el-col :span="18">
+        <!-- k线图 -->
+        <div id="echartContainer" ref="echartContainer" style="width:100%; height:500px"></div>
+        <!-- 购买和出售 -->
+        <div></div>
+      </el-col>
+    </el-row>
     <h1>Echarts绘制k线图</h1>
-    <div id="echartContainer" ref="echartContainer" style="width:100%; height:400px"></div>
   </div>
 </template>
 
@@ -9,9 +48,26 @@
 var echarts = require('echarts')
 export default {
   data() {
-    return {}
+    return {
+      activeName: 'USDT',
+      // 横向数据
+      lineData: [],
+      // 纵向数据
+      tableData: [
+        {
+          value: 'btc'
+        },
+        {
+          value: 'eth'
+        }
+      ],
+      // 搜索框内容
+      state: ''
+    }
   },
-  mounted() {
+  async mounted() {
+    this.getdetail()
+
     var rawData = [
       [
         '2015/12/31',
@@ -3089,8 +3145,69 @@ export default {
     // 进行初始化
     var charts = echarts.init(this.$refs.echartContainer)
     charts.setOption(option)
+  },
+  methods: {
+    handleClick(tab, event) {
+      console.log(tab, event)
+    },
+    // 默认应该是传入搜索框的输入内容
+    querySearchAsync(queryString, cb) {
+      var data = this.tableData
+      var results = queryString
+        ? data.filter(this.createStateFilter(queryString))
+        : data
+
+      clearTimeout(this.timeout)
+      this.timeout = setTimeout(() => {
+        cb(results)
+      }, 300)
+    },
+    handleSelect(item) {
+      this.tableData = []
+      this.tableData.push(item)
+    },
+    showdetail(row) {
+      console.log(row.info)
+      this.detail.type = row.value
+      this.detail.info = row.info
+    },
+    async getdetail() {
+      let { coin } = await this.$http.get('/coin/detail')
+      // console.log(coin)
+      this.lineData = coin
+      console.log(this.lineData)
+    }
   }
 }
 </script>
 
-<style scoped></style>
+<style lang="scss">
+.el-tabs {
+  background-color: #28344d;
+  border: none;
+  // display: flex;
+  padding: 0;
+  // 页面缩小左右滑动框背景颜色
+  .el-tabs__nav-wrap.is-scrollable {
+    background-color: #28344d;
+  }
+  .el-tabs__nav-scroll {
+    background-color: #28344d;
+    .el-tabs__item {
+      background-color: #28344d !important;
+      border: none;
+    }
+  }
+  .el-autocomplete {
+    width: 80%;
+    float: left;
+    margin-bottom: 30px;
+    .el-input__inner {
+      background-color: #28344d;
+    }
+  }
+
+  .el-table {
+  }
+}
+</style>
