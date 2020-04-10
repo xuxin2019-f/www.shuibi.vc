@@ -40,7 +40,6 @@
         <div></div>
       </el-col>
     </el-row>
-    <h1>Echarts绘制k线图</h1>
   </div>
 </template>
 
@@ -3172,6 +3171,13 @@ export default {
       this.detail.info = row.info
     },
     async getdetail() {
+      // let { data } = await this.$http.get('/test')
+      // let arr = []
+      // for (let i = 0; i < data.length; i++) {
+      //   arr.push(Object.values(data[i]))
+      // }
+      // console.log(arr)
+
       let { coin } = await this.$http.get('/coin/detail')
       // console.log(coin)
       this.lineData = coin

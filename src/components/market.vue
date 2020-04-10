@@ -25,38 +25,27 @@
             @row-click="showdetail"
             :height="winheight"
           >
-            <el-table-column prop="value" label="币种" width="200">
-            </el-table-column>
-            <el-table-column prop="low" label="当前最低价" width="200" sortable>
-            </el-table-column>
-            <el-table-column
-              prop="high"
-              label="当前最高价"
-              width="200"
-              sortable
-            >
-            </el-table-column>
+            <el-table-column prop="value" label="币种" width="200"></el-table-column>
+            <el-table-column prop="low" label="当前最低价" width="200" sortable></el-table-column>
+            <el-table-column prop="high" label="当前最高价" width="200" sortable></el-table-column>
             <el-table-column prop="bid[1]" label="涨幅" width="200" sortable>
               <!-- 使用作用域插槽 -->
               <template slot-scope="scope">
-                <el-tag v-if="scope.row.bid[1] > 0" type="success">{{
+                <el-tag v-if="scope.row.bid[1] > 0" type="success">
+                  {{
                   scope.row.bid[1]
-                }}</el-tag>
-                <el-tag v-else-if="scope.row.bid[1] === 0" type="info">{{
+                  }}
+                </el-tag>
+                <el-tag v-else-if="scope.row.bid[1] === 0" type="info">
+                  {{
                   scope.row.bid[1]
-                }}</el-tag>
+                  }}
+                </el-tag>
                 <el-tag v-else type="danger">{{ scope.row.bid[1] }}</el-tag>
               </template>
             </el-table-column>
-            <el-table-column prop="count" label="24H量" width="200">
-            </el-table-column>
-            <el-table-column
-              prop="amount"
-              label="24H交易量"
-              width="200"
-              sortable
-            >
-            </el-table-column>
+            <el-table-column prop="count" label="24H量" width="200"></el-table-column>
+            <el-table-column prop="amount" label="24H交易量" width="200" sortable></el-table-column>
           </el-table>
         </el-card>
       </el-col>
@@ -86,9 +75,7 @@
                       <span>简介</span>
                     </li>
                     <li>
-                      <p>
-                        {{ detail.info }}
-                      </p>
+                      <p>{{ detail.info }}</p>
                     </li>
                   </ul>
                 </div>
@@ -106,54 +93,54 @@ export default {
   data() {
     return {
       winheight: window.innerHeight - 110,
-      activeName: "first",
+      activeName: 'first',
       // 搜索框内容
-      state: "",
+      state: '',
       tableData: [],
       detail: {
-        type: "BTC",
-        publictime: "2018-11-1",
-        publicamount: "21,000,000",
-        info: "这里是简介"
+        type: 'BTC',
+        publictime: '2018-11-1',
+        publicamount: '21,000,000',
+        info: '这里是简介'
       }
-    };
+    }
   },
   async mounted() {
-    let { usdt } = await this.$http.get("/market");
-    this.tableData = usdt;
+    let { usdt } = await this.$http.get('/market')
+    this.tableData = usdt
   },
   methods: {
     showdetail(row) {
-      console.log(row.info);
-      this.detail.type = row.value;
-      this.detail.info = row.info;
+      console.log(row.info)
+      this.detail.type = row.value
+      this.detail.info = row.info
     },
     // 默认应该是传入搜索框的输入内容
     querySearchAsync(queryString, cb) {
-      var data = this.tableData;
+      var data = this.tableData
       var results = queryString
         ? data.filter(this.createStateFilter(queryString))
-        : data;
+        : data
 
-      clearTimeout(this.timeout);
+      clearTimeout(this.timeout)
       this.timeout = setTimeout(() => {
-        cb(results);
-      }, 300);
+        cb(results)
+      }, 300)
     },
     createStateFilter(queryString) {
       return state => {
         // state.value指定是遍历value属性,indexOf!==保证模糊搜索
         return (
           state.value.toLowerCase().indexOf(queryString.toLowerCase()) !== -1
-        );
-      };
+        )
+      }
     },
     handleSelect(item) {
-      this.tableData = [];
-      this.tableData.push(item);
+      this.tableData = []
+      this.tableData.push(item)
     }
   }
-};
+}
 </script>
 
 <style scoped>
@@ -173,7 +160,7 @@ export default {
 .clearfix:before,
 .clearfix:after {
   display: table;
-  content: "";
+  content: '';
 }
 .el-card__header {
   background-color: #a8c4e0;

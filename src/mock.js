@@ -21,6 +21,18 @@ Mock.mock(`${domain}/k`, "get", {
   ]
 });
 
+Mock.mock(`${domain}/test`, "get", {
+  "data|3": [
+    {
+      "value|+1": ["USDT", "HUSD", "BTC", "ETH", "HT", "ATLS"],
+      "id|+1": 0,
+      amount: 13211,
+      close: 11412,
+      high: 1312,
+      open: 132141
+    }
+  ]
+});
 Mock.mock(`${domain}/coin/detail`, "get", {
   "coin|6": [
     {
