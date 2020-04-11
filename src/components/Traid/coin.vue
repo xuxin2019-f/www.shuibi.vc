@@ -41,26 +41,34 @@
             <el-col :span="12">
               <el-form ref="buyform" :model="buyform">
                 <el-form-item label="买入价">
-                  <el-input v-model="buyform.value"></el-input>
+                  <el-input v-model="buyform.value">
+                    <i slot="suffix">{{buyform.type}}</i>
+                  </el-input>
                 </el-form-item>
                 <el-form-item label="买入量">
-                  <el-input v-model="buyform.count"></el-input>
+                  <el-input v-model="buyform.count">
+                    <i slot="suffix">{{buyform.coin}}</i>
+                  </el-input>
                 </el-form-item>
                 <el-form-item>
-                  <el-button>买入</el-button>
+                  <el-button @click="Buy">买入</el-button>
                 </el-form-item>
               </el-form>
             </el-col>
             <el-col :span="12">
               <el-form ref="sellform" :model="sellform">
                 <el-form-item label="卖入价">
-                  <el-input v-model="sellform.value"></el-input>
+                  <el-input v-model="sellform.value">
+                    <i slot="suffix">{{sellform.type}}</i>
+                  </el-input>
                 </el-form-item>
                 <el-form-item label="卖入量">
-                  <el-input v-model="sellform.count"></el-input>
+                  <el-input v-model="sellform.count">
+                    <i slot="suffix">{{sellform.coin}}</i>
+                  </el-input>
                 </el-form-item>
                 <el-form-item>
-                  <el-button>卖出</el-button>
+                  <el-button @click="Sell">卖出</el-button>
                 </el-form-item>
               </el-form>
             </el-col>
@@ -87,11 +95,15 @@ export default {
       state: '',
       // 买入
       buyform: {
+        type: '',
+        coin: '',
         value: '',
         count: ''
       },
       // 卖出
       sellform: {
+        type: '',
+        coin: '',
         value: '',
         count: ''
       }
@@ -107,6 +119,9 @@ export default {
       let ret = await this.$http.get(`/coin/detail/${tab.label}`)
       // console.log(ret.data)
       this.tableData = ret.data
+      // 给买卖表格传递数据
+      this.buyform.type = tab.label
+      this.sellform.type = tab.label
     },
     // 默认应该是传入搜索框的输入内容
     querySearchAsync(queryString, cb) {
@@ -133,9 +148,9 @@ export default {
       this.tableData.push(item)
     },
     showdetail(row) {
-      console.log(row.info)
-      this.detail.type = row.value
-      this.detail.info = row.info
+      console.log(row)
+      this.buyform.coin = row.value
+      this.sellform.coin = row.value
     },
     async getdetail() {
       // let { data } = await this.$http.get('/test')
@@ -149,6 +164,14 @@ export default {
       // console.log(coin)
       this.lineData = coin
       console.log(this.lineData)
+    },
+    async Buy() {
+      // 买入
+      console.log(this.buyform.value, this.buyform.count)
+    },
+    async Sell() {
+      // 卖出
+      console.log(this.sellform.value, this.sellform.count)
     }
   }
 }
@@ -227,8 +250,18 @@ export default {
   .el-form-item {
     width: 80%;
     margin: 0 auto;
+    .el-input__inner {
+      background-color: #28344d;
+    }
+    .el-input__suffix {
+      i {
+        margin-right: 15px;
+      }
+    }
     .el-button {
       margin-top: 30px;
+      background-color: #28344d;
+      color: white;
     }
   }
 }
