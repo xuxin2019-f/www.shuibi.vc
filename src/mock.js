@@ -21,8 +21,8 @@ Mock.mock(`${domain}/k`, "get", {
   ]
 });
 
-Mock.mock(`${domain}/test`, "get", {
-  "data|3": [
+Mock.mock(`${domain}/test/USDT`, "get", {
+  USDT: [
     {
       "value|+1": ["USDT", "HUSD", "BTC", "ETH", "HT", "ATLS"],
       "id|+1": 0,
@@ -33,25 +33,13 @@ Mock.mock(`${domain}/test`, "get", {
     }
   ]
 });
-Mock.mock(`${domain}/coin/detail`, "get", {
-  "coin|6": [
+Mock.mock(`${domain}/coin/detail/USDT`, "get", {
+  "data|20": [
     {
-      "value|+1": ["USDT", "HUSD", "BTC", "ETH", "HT", "ATLS"],
+      "value|+1": ["BTC", "ETH", "HT", "XRP", "LTC", "BCH"],
       "id|+1": 0,
-      children: [
-        [
-          "2015/12/31",
-          "3570.47",
-          "3539.18",
-          "-33.69",
-          "-0.94%",
-          "3538.35",
-          "3580.6",
-          "176963664",
-          "25403106",
-          "-"
-        ]
-      ]
+      close: "@float(6210,7390,2,2)",
+      rise: "@float(0,5,2,2)"
     }
   ]
 });
