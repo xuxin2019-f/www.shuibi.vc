@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="coincontainer">
     <el-row>
       <el-col :span="8">
         <!-- 二维列表 -->
@@ -178,90 +178,92 @@ export default {
 </script>
 
 <style lang="scss">
-.el-tabs {
-  background-color: #28344d;
-  border: none;
-  // display: flex;
-  padding: 0;
-  // 页面缩小左右滑动框背景颜色
-  .el-tabs__nav-wrap.is-scrollable {
+.coincontainer {
+  .el-tabs {
     background-color: #28344d;
-  }
-  .el-tabs__nav-scroll {
-    background-color: #28344d;
-    .el-tabs__item {
-      background-color: #28344d !important;
-      border: none;
-    }
-  }
-  .el-autocomplete {
-    width: 80%;
-    float: left;
-    margin-bottom: 30px;
-    .el-input__inner {
+    border: none;
+    // display: flex;
+    padding: 0;
+    // 页面缩小左右滑动框背景颜色
+    .el-tabs__nav-wrap.is-scrollable {
       background-color: #28344d;
     }
-  }
-  // 表格
-  .el-table,
-  .el-table__expanded-cell {
-    background-color: transparent !important;
-  }
-
-  .cointable th,
-  .cointable tr {
-    border: 0 !important;
-    background-color: transparent !important;
-  }
-  .cointable tr {
-    color: rgb(192, 189, 189);
-  }
-  .cointable th {
-    color: #606266;
-  }
-  .el-table--border tr,
-  td {
-    border: none !important;
-  }
-  .el-table::before {
-    height: 0;
-  }
-  /*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
-  ::-webkit-scrollbar {
-    width: 15px; /*滚动条宽度*/
-    height: 7px; /*滚动条高度*/
-    background-color: rgb(169, 170, 173);
-  }
-
-  /*定义滑块 内阴影+圆角*/
-  ::-webkit-scrollbar-thumb {
-    -webkit-box-shadow: inset 0 0 6px rgba(216, 39, 39, 0.3);
-    background-color: rgb(0, 12, 46); /*滚动条的背景颜色*/
-  }
-  .el-table--enable-row-hover .el-table__body tr:hover > td {
-    background-color: rgb(0, 12, 46) !important;
-  }
-  .el-table thead {
-    color: #606266 !important;
-  }
-}
-
-.traid {
-  .el-form-item {
-    width: 80%;
-    margin: 0 auto;
-    .el-input__inner {
+    .el-tabs__nav-scroll {
       background-color: #28344d;
-    }
-    .el-input__suffix {
-      i {
-        margin-right: 15px;
+      .el-tabs__item {
+        background-color: #28344d !important;
+        border: none;
       }
     }
-    .el-button {
-      margin-top: 30px;
-      background-color: #28344d;
-      color: white;
+    .el-autocomplete {
+      width: 80%;
+      float: left;
+      margin-bottom: 30px;
+      .el-input__inner {
+        background-color: #28344d;
+      }
+    }
+    // 表格
+    .el-table,
+    .el-table__expanded-cell {
+      background-color: transparent !important;
+    }
+
+    .cointable th,
+    .cointable tr {
+      border: 0 !important;
+      background-color: transparent !important;
+    }
+    .cointable tr {
+      color: rgb(192, 189, 189);
+    }
+    .cointable th {
+      color: #606266;
+    }
+    .el-table--border tr,
+    td {
+      border: none !important;
+    }
+    .el-table::before {
+      height: 0;
+    }
+    /*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+    ::-webkit-scrollbar {
+      width: 15px; /*滚动条宽度*/
+      height: 7px; /*滚动条高度*/
+      background-color: rgb(169, 170, 173);
+    }
+
+    /*定义滑块 内阴影+圆角*/
+    ::-webkit-scrollbar-thumb {
+      -webkit-box-shadow: inset 0 0 6px rgba(216, 39, 39, 0.3);
+      background-color: rgb(0, 12, 46); /*滚动条的背景颜色*/
+    }
+    .el-table--enable-row-hover .el-table__body tr:hover > td {
+      background-color: rgb(0, 12, 46) !important;
+    }
+    .el-table thead {
+      color: #606266 !important;
+    }
+  }
+
+  .traid {
+    .el-form-item {
+      width: 80%;
+      margin: 0 auto;
+      .el-input__inner {
+        background-color: #28344d;
+      }
+      .el-input__suffix {
+        i {
+          margin-right: 15px;
+        }
+      }
+      .el-button {
+        margin-top: 30px;
+        background-color: #28344d;
+        color: white;
+      }
     }
   }
 }
