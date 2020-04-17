@@ -63,3 +63,16 @@ Mock.mock(`${domain}/market`, "get", {
     }
   ]
 });
+
+Mock.mock(`${domain}/more/fabi/buy-BTC`, "get", {
+  "data|20": [
+    {
+      info: { url: "../../assets/logo.png", name: "xx最可爱" },
+      amount: "0.77002180BTC",
+      limit: "10,000-37,529CNY",
+      single: "48,7000CNY",
+      way: "银行卡",
+      traid: "BTC"
+    }
+  ]
+});
