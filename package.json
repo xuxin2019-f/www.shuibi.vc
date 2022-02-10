@@ -13,7 +13,7 @@
     "echarts": "^4.7.0",
     "element-ui": "^2.4.5",
     "lodash": "^4.17.15",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "sass-loader": "^8.0.2",
     "vue": "^2.6.11",
     "vue-kline": "^1.2.1",
